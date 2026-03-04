@@ -1,0 +1,62 @@
+# Backlog Triage — Project Configuration
+#
+# Edit this file to match your project's structure, abbreviations,
+# and scoring preferences. All scripts and skill docs read from here.
+
+project:
+  name: "MyProject"
+
+  # Paths relative to project root (where CLAUDE.md or .claude/ lives)
+  backlog_dir: "Backlog"
+  archive_dir: "Backlog/Archive"
+  index_file: "00-Index-Backlog.md"
+
+  # Lessons learned integration (set to "" to disable)
+  lessons_dir: "LessonsLearned"
+  lessons_index: "00-Index-LessonsLearned.md"
+
+# Item file naming pattern: {abbrev}-{id}-{seq}-{topic}.md
+# Define your project's abbreviation codes here.
+abbreviations:
+  APP: "Application features"
+  BUG: "Bug fixes"
+  DOC: "Documentation"
+  INFRA: "Infrastructure and DevOps"
+  # Add your project-specific abbreviations:
+  # API: "API endpoints"
+  # UI: "Frontend / UI changes"
+  # DATA: "Database / data layer"
+
+# 8-factor scoring weights — tune these to your workflow
+scoring:
+  priority_high: 30
+  priority_medium: 20
+  priority_low: 10
+  bug_fix_bonus: 15
+  in_progress_bonus: 10
+  file_count_bonus: 5       # per extra file beyond 1
+  planning_penalty: -5
+  blocks_bonus: 20           # per open item blocked
+  momentum_bonus: 5
+  age_bonus_per_week: 1
+  age_cap: 12
+
+# Valid status values (order matters for flow)
+statuses:
+  - NOT_STARTED
+  - PLANNING
+  - IN_PROGRESS
+  - BLOCKED
+  - COMPLETE
+  - CLOSED
+
+# Build/test commands for fix delegation prompts
+# The skill references these when assembling the triage-prompt template.
+build_commands:
+  default: "echo 'Configure build_commands in config.yaml'"
+  # Examples — uncomment and adapt for your stack:
+  # csharp: "dotnet build"
+  # python: "python -m pytest"
+  # node: "npm test"
+  # go: "go build ./..."
+  # rust: "cargo build"
